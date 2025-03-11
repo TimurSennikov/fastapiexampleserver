@@ -1,0 +1,33 @@
+<!--
+    ВНИМАНИЕ! Дальше используются сокращения
+    фсл - фигурная скобка левая
+    фсп - фигурная скобка правая
+
+    потому что jinja не учитывает комментарии, и в них не получится использовать эти знаки напрямую.
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{{url_for("static", path="styles.css")}}">
+</head>
+<body>
+    <h1>Chat example by Timur_Sennikov!!!!!</h1>
+    <!-- Заголовок, вау! -->
+
+    <!-- Тут интереснее: форма, совершающая POST запрос по адресу /submit. -->
+    <form method="post", action="/submit">
+        <input name="text" placeholder="Enter your message"></input> <!-- поле с именем text, именно оно полетит на сервер. -->
+        <input type="submit" value="Submit"> <!-- кнопка отправки. -->
+    </form>
+
+    <!-- цикл for jinja. Мало чем отличается от пайтоновского, разве что обводкой в виде фсл% и %фсп-->
+    {% for phrase in chat %}
+        <h3>{{phrase}}</h3>
+    {% endfor %}
+    <!-- фсл% endfor %фсл значит окончание блока цикла for, всё, что написано дальше, к циклу не относится. Привет, lua. -->
+</body>
+</html>
